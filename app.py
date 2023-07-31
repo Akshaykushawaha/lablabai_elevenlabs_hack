@@ -11,7 +11,7 @@ def handle_user_input():
 
 @app.route('/', methods=['GET'])
 def Home():    
-    return render_template("index.html")
+    return render_template("./template/index.html")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, port =85)
