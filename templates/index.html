@@ -80,7 +80,7 @@
                 <p>Here you will give in your inputs as a caller and the AI will reply to you.</p>
                 <!-- Dropdown menu -->
                 <h2>How do you want to give your input?</h2>
-                <select id="Launguage" name="Launguage">
+                <select id="Language" name="Language">
                     <option disabled selected>Select a launguage</option>
                     <option value="English">English</option>
                     <option value="Hindi">Hindi</option>
@@ -96,10 +96,11 @@
                 </select>
                 <div class="userinpbox" id="option1Div" style="display: none;">
                     <h3>Text Input:</h3>
-                    <textarea type="text" name="user_input" id="user-input" placeholder="Enter your query here"></textarea>
+                    <textarea type="text" name="user-input" id="user-input" placeholder="Enter your query here"></textarea>
+                    <h1>"The value for number is: " <span name="user-input" id="user-input"></span></h1>
                     <button type="submit" class="submit-button" onclick="submitForm()">Submit</button>
                     <textarea class="textare" readonly type="text" name="user_output" id="user-output" placeholder="The output will be displayed here" ></textarea>
-                    <button id="playBtnout" disabled>Play output again</button>
+                    <button id="playBtnout">Play output again</button>
                 </div>
 
                 <div id="option2Div" style="display: none;">
@@ -112,7 +113,7 @@
                         <button onclick="submitForm()" id="saveBtn" disabled >Submit</button>
                         <button id="playBtn" disabled>Play</button>
                         <textarea class="textare1" readonly type="text" name="user_output" id="user-output" placeholder="The output will be displayed here" ></textarea>
-                        <button id="playBtnout" disabled>Play output again</button>
+                        <button id="playBtnout">Play output again</button>
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/libmp3lame-js/1.0.1/lame.all.js"></script>
                     </div>
                 </div>

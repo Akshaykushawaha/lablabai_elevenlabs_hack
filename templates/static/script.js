@@ -43,9 +43,7 @@ window.onscroll = () => {
     menuIcon.classList.remove('bx-x');
     navbar.classList.remove('active');
 
-    // Animation footer on scroll
-    let footer = document.querySelector('footer');
-    footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
+
 };
 
 // Audio recording and saving
@@ -152,32 +150,42 @@ function showOptions() {
     }
 }
 
+async function submitForm() {
+    var user_input = document.getElementById("user-input").value;
+    var Language = document.getElementById("Language").value;
 
-//let vt ="";
-function submitForm() {
-    var userInput = document.getElementById("user-input").value;
-    var Launguage = document.getElementById("Launguage").value;
-    fetch('/process', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            user_input: userInput,
-            Launguage: Launguage,
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("user-output").textContent = data.user_output || "The output will be displayed here";;
-    })
-    .catch(error => {
+    try {
+        const response = await fetch('/process', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_input: user_input,
+                Language: Language,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        const contentType = response.headers.get('content-type');
+        console.log('content type:', contentType); 
+        const rawData = await response.text(); // Read the response as text
+        console.log('Raw Response Data:', rawData); // Print raw response data to the console
+        const data = JSON.parse(rawData); // Parse the JSON data
+        console.log('Raw Data:', data); 
+        document.getElementById("user-output").textContent = data.user_output || "The output will be displayed here";
+    } catch (error) {
         console.error('Error:', error);
-    });
+    }
 }
 
+
+
+
 function trainForm() {
-    var userInput = document.getElementById("user-input").value;
+    var userInput = document.getElementById("user-pref").value;
     fetch('/train', {
         method: 'POST',
         headers: {
